@@ -144,6 +144,8 @@ npm run doc
 
 ## 部署说明（简要）
 
+部署教程：https://lanyunblog.com/article/69bcab7d366b68abd767c093
+
 常见部署流程：
 
 1. 配置生产环境变量（尤其是 JWT 与 Session 相关密钥）
