@@ -11,7 +11,7 @@
  Target Server Version : 70024 (7.0.24)
  File Encoding         : 65001
 
- Date: 21/03/2026 15:37:09
+ Date: 21/03/2026 15:56:53
 */
 
 
@@ -846,7 +846,7 @@ db.getCollection("author_info").insert([ {
     avatar: "/resource/1773914762026_nlofas.webp",
     name: "LanYun",
     ps: "无数普通人中的一个",
-    biography: "暂无",
+    biography: "<p style=\"color: red;\">不知道写啥QWQ</p>",
     qq: "168847242",
     wechat: "168847242",
     email: "168847242@qq.com",
@@ -854,7 +854,7 @@ db.getCollection("author_info").insert([ {
     weibo: "https://gitee.com/lanyun417",
     isUse: "yes",
     createdAt: "2025年11月10日 15:42:04",
-    updatedAt: "2026年03月19日 18:06:03",
+    updatedAt: "2026年03月21日 15:53:28",
     __v: NumberInt("0")
 } ]);
 
