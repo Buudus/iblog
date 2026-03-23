@@ -4,7 +4,7 @@
 		class="data-view h-full min-h-[560px] relative overflow-hidden rounded-lg">
 		<!-- 地图铺满，作为主视觉 -->
 		<div class="china-map-wrapper absolute inset-0 z-0">
-			<ChinaMap :data="data.mapData" />
+			<ChinaMap :data="data.mapData" :sub-title="data.mapSubTitle" />
 		</div>
 
 		<!-- 左侧：热门文章 TOP3（浮层，固定宽度） -->

@@ -7,6 +7,7 @@ export function useDataView() {
 		hotArticles: [],
 		lineChart: { category: [], data: [], title: '最近七天文章浏览时长(分钟)' },
 		barChart: { category: [], data: [], title: '最近七天浏览量最高的分类 TOP5' },
+		mapSubTitle: '暂无访问数据',
 		mapData: [],
 	});
 

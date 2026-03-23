@@ -232,8 +232,8 @@ export default defineComponent({
 		});
 
 		watch(
-			() => props.data,
-			(newData) => {
+			() => [props.data, props.title, props.subTitle],
+			([newData]) => {
 				if (chartInstance) {
 					chartInstance.setOption(buildOption(newData || []));
 				}

@@ -7,8 +7,6 @@ import { ipToRegion, getClientIp } from '../utils/util.ipTool';
  * 访问日志记录中间件
  */
 export default defineEventHandler(async (event) => {
-	console.log('SESSION_PASSWORD: ', process.env.SESSION_PASSWORD);
-	console.log('NUXT_SESSION_PASSWORD: ', process.env.NUXT_SESSION_PASSWORD);
 	try {
 		const ip = getClientIp(event);
 		const userAgent = event.node.req.headers['user-agent'];

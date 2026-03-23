@@ -52,6 +52,7 @@ export interface DataViewResponse {
 		data: number[];
 		title: string;
 	};
+	mapSubTitle: string;
 	mapData: Array<{ name: string; value: number }>;
 }
 

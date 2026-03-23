@@ -131,7 +131,7 @@ export default defineEventHandler(async () => {
 		const sevenDaysStart = dayjs().subtract(6, 'day').format('YYYY年MM月DD日') + ' 00:00:00';
 		const sevenDaysEnd = todayEnd;
 
-		const [todayVisitsResult, lineChartResult, barChartResult, hotArticlesData, mapDataResult] =
+		const [todayVisitsResult, lineChartResult, barChartResult, hotArticlesData, mapDataResult, earliestAccessLogResult] =
 			await Promise.all([
 				// 今日新增访问量（按 IP 去重）
 				AccessLogModel.aggregate([
@@ -264,6 +264,13 @@ export default defineEventHandler(async () => {
 					{ $group: { _id: { province: '$regionInfo.province', ip: '$ip' } } },
 					{ $group: { _id: '$_id.province', count: { $sum: 1 } } },
 				]),
+				// 最早访问记录（用于地图副标题）
+				AccessLogModel.aggregate([
+					{ $match: { createdAt: { $exists: true, $ne: '' } } },
+					{ $sort: { createdAt: 1 } },
+					{ $limit: 1 },
+					{ $project: { _id: 0, createdAt: 1 } },
+				]),
 			]);
 
 		const todayVisits = todayVisitsResult.length > 0 ? todayVisitsResult[0].total : 0;
@@ -285,6 +292,9 @@ export default defineEventHandler(async () => {
 			provinceCount.set(name, (provinceCount.get(name) || 0) + r.count);
 		});
 		const mapData = Array.from(provinceCount.entries()).map(([name, value]) => ({ name, value }));
+		const earliestCreatedAt = earliestAccessLogResult[0]?.createdAt || '';
+		const earliestYear = earliestCreatedAt.match(/^(\d{4})年/)?.[1] || '';
+		const mapSubTitle = earliestYear ? `从${earliestYear}年至今` : '暂无访问数据';
 
 		return resultFormat(200, '获取成功', {
 			todayVisits,
@@ -299,6 +309,7 @@ export default defineEventHandler(async () => {
 				data: barChartData,
 				title: '最近七天浏览量最高的分类 TOP5',
 			},
+			mapSubTitle,
 			mapData,
 		});
 	} catch (err: unknown) {
