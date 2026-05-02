@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
 
 		// 仅保留图片类型
 		const imageFiles = middlewareResult.filter(
-			(f: IFile) => typeof f.mimetype === 'string' && f.mimetype.startsWith('image/')
+			(f: IFile) => typeof f.mimetype === 'string' && f.mimetype.startsWith('image/'),
 		);
 
 		if (imageFiles.length === 0) {
@@ -66,7 +66,6 @@ export default defineEventHandler(async (event) => {
 			return {
 				title: derivedTitle,
 				url: f.url,
-				path: f.path,
 				description,
 				tags,
 			};

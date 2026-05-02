@@ -26,11 +26,6 @@ const PhotoAlbumSchema: Schema = new Schema(
 			required: true,
 			trim: true,
 		},
-		path: {
-			type: String,
-			required: true,
-			trim: true,
-		},
 		description: {
 			type: String,
 			default: '',
@@ -50,7 +45,7 @@ const PhotoAlbumSchema: Schema = new Schema(
 	},
 	{
 		collection: 'photo_album', // 指定集合名称
-	}
+	},
 );
 
 // 创建并导出模型

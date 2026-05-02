@@ -32,6 +32,7 @@ await authorInfoStore.fetchAuthorInfo();
 
 // 设置站点信息
 await siteInfoStore.fetchSiteInfo();
+
 useHead({
 	title: siteInfoStore.siteInfo.title,
 	meta: [
